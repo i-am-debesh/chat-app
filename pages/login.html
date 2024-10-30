@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign up</title>
+    <style>
+        body{
+            background-color: rgba(0, 0, 0, 0.944);
+            color: white;
+            text-align: center;
+            align-items: center;
+            
+        }
+        .main{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin-top: 80px;
+            /* background-color: red; */
+        }
+        .container{
+            background-color: rgb(36, 128, 96);
+            height: 400px;
+            width: 300px;
+            text-align: center;
+            color: black;
+            border-radius: 10px;
+        }
+        .inputs{
+            margin-top: 80px;
+        }
+        .user-name{
+            margin-bottom: 30px;
+        }
+        .user-name,
+        .user-pass{
+            padding: 10px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+        }
+        .btns {
+            margin-top: 50px;
+        }
+        .submit-btn{
+            padding: 10px 10px;
+            border: none;
+            background-color: rgb(25, 57, 101);
+            font-weight: bolder;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Secret Society</h1>
+    <div class="main">
+        <div class="container">
+            <h2 class="heading">Login/sign up</h2>
+            <div class="inputs">
+                <input type="text" class="user-name" placeholder="username">
+                <input type="text" class="user-pass" placeholder="password">
+            </div>
+            <div class="btns">
+                <button class="submit-btn">Submit</button>
+            </div>
+
+        </div>
+    </div>
+    
+    <script>
+
+        const usernameElement = document.querySelector('.user-name');
+        const userpassElement = document.querySelector('.user-pass');
+        const submitBtnElement = document.querySelector('.submit-btn');
+
+        const loginURL = `http://localhost:5000/register=/`;
+        async function sendData(username, password) {
+            try {
+                    
+                    const response = await fetch(`${loginURL}user=${username}..pass=${password}`);
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+                
+                    const result = await response.json();
+                    if(result === '-1') {
+                        console.log('user already exist');
+                        
+                    }else if(result === '1') {
+                        console.log('user registered successfully!');
+                    }
+
+                } 
+                catch (error) {
+                    console.error(error.message);
+                    return error.message;
+                    
+                }
+        }
+        function saveUserToLocalStorage(username) {
+            localStorage.clear();
+            const user = {
+                "name":username
+            }
+            localStorage.setItem('chat-user-name',JSON.stringify(user));
+        }
+        submitBtnElement.addEventListener('click', async()=>{
+            const username = usernameElement.value;
+            const password = userpassElement.value;
+            
+            if((username.trim()).length > 0 && (password.trim()).length > 0) {
+                await sendData(username,password);
+                saveUserToLocalStorage(username);                
+            }
+            else {
+                alert('invalid Inputs.');
+            }
+
+        })
+
+
+
+
+    </script>
+</body>
+</html>
