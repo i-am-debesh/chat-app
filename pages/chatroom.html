@@ -92,6 +92,12 @@
             width: fit-content;
             background-color: rgb(2, 91, 45);
             margin-bottom: 20px ;
+            text-align: left;
+            /* align-items:flex-end; */
+            
+        }
+        .msg .message {
+            align-items:flex-end;
         }
         .self-msg {
             display: flex;
@@ -176,13 +182,20 @@
                     if(result[i].username === JSON.parse(localStorage.getItem("chat-user-name")).name) {
                         selfMsgClass = 'self-msg';
                     }
-
+                    let msg = result[i].msgContent;
+                    if(msg.includes('https://')) {
+                        try{
+                            msg = `<img src="https://media.tenor.com/y0zptlFKiYIAAAAM/yay-kitty.gif" alt="Yay Kitty GIF">`;
+                        }catch(error) {
+                            msg = result[i].msgContent;
+                        }
+                    }
                     const HTMLelement = 
                     `
                         <div class="msg ${selfMsgClass}">
                             <div class="username">${result[i].username}</div>
                             <div class="message">
-                                ${result[i].msgContent}
+                                ${msg}
                             </div>
                         </div>                        
                     `;
