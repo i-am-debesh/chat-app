@@ -75,7 +75,8 @@
         const userpassElement = document.querySelector('.user-pass');
         const submitBtnElement = document.querySelector('.submit-btn');
 
-        const loginURL = `http://localhost:5000/register=/`;
+        //const loginURL = `http://localhost:5000/register=/`;
+        const loginURL = `https://chat-app-61c8.onrender.com/register=/`;
         async function sendData(username, password) {
             try {
                     
@@ -112,7 +113,8 @@
             
             if((username.trim()).length > 0 && (password.trim()).length > 0) {
                 await sendData(username,password);
-                saveUserToLocalStorage(username);                
+                saveUserToLocalStorage(username);
+                window.location.href = "https://chat-app-61c8.onrender.com/chatroom";              
             }
             else {
                 alert('invalid Inputs.');
