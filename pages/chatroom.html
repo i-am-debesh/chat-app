@@ -185,7 +185,7 @@
                     let msg = result[i].msgContent;
                     if(msg.includes('https://')) {
                         try{
-                            msg = `<img src="https://media.tenor.com/y0zptlFKiYIAAAAM/yay-kitty.gif" alt="Yay Kitty GIF">`;
+                            msg = `<img src="${msg}" alt="Yay Kitty GIF">`;
                         }catch(error) {
                             msg = result[i].msgContent;
                         }
