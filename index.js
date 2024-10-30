@@ -27,7 +27,7 @@ app.get(/register=/, async(req,res)=>{
     }
     else if(userExist(userData.username) === false) {
         await registerUser(userData.username, userData.password);
-        console.log(userData);
+        // console.log(userData);
         res.json('1');
     }
     

@@ -102,8 +102,12 @@
             min-width: 50px;
             max-width: 300px;
             width: fit-content;
-            background-color: rgb(59, 94, 76);
+            background-color: rgb(45, 119, 81);
             margin-bottom: 20px ;
+            
+        }
+        .self-msg .username{
+            color: rgb(78, 8, 59);
         }
         .username {
             height: 20px;
@@ -168,9 +172,14 @@
                 let fullElement = '';
                 for(let i=0; i<result.length; i++) {
                     
+                    let selfMsgClass = '';
+                    if(result[i].username === JSON.parse(localStorage.getItem("chat-user-name")).name) {
+                        selfMsgClass = 'self-msg';
+                    }
+
                     const HTMLelement = 
                     `
-                        <div class="msg self-msg">
+                        <div class="msg ${selfMsgClass}">
                             <div class="username">${result[i].username}</div>
                             <div class="message">
                                 ${result[i].msgContent}
