@@ -15,13 +15,15 @@ const User = mongoose.model('User',
 )
 
 const Message = mongoose.model('Message',
-    {
+    {   
+        username: String,
         msgContent: String
     }
 );
-async function saveMessage(message) {
+async function saveMessage(username, message) {
     const msg = new Message(
-        {
+        {   
+            username: username,
             msgContent:message
         }
     );

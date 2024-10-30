@@ -107,6 +107,26 @@
             }
             localStorage.setItem('chat-user-name',JSON.stringify(user));
         }
+        function tryloggedINUser() {
+            try{
+                const username = JSON.parse(localStorage.getItem("chat-user-name")).name;
+                if(username) {
+                    let concent = prompt(`You are previously logged in as ${username}..If you want to log in with a new id then type Y else N`);
+                    if(concent === 'N' || concent === 'n') {
+                        window.location.href = "https://chat-app-61c8.onrender.com/chatroom";
+                    }
+                    else {
+                        throw(error);
+                    }
+                }
+            }catch(error) {
+                alert('log in to continue.');
+                //console.log(error);
+                
+            }
+            
+        }
+        tryloggedINUser();
         submitBtnElement.addEventListener('click', async()=>{
             const username = usernameElement.value;
             const password = userpassElement.value;
@@ -120,10 +140,7 @@
                 alert('invalid Inputs.');
             }
 
-        })
-
-
-
+        });
 
     </script>
 </body>

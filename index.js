@@ -45,12 +45,13 @@ app.get('/rendermsg', async(req,res)=>{
 })
 
 app.get(/save-message=/, async(req,res)=>{
-    const msg = decodeStringSafely(req.url);
+    const msg = decodeStringSafely(req.url).message;
+    const user = decodeStringSafely(req.url).username;
+    //console.log(req.url);
     
-    
-    //console.log(msg);
+    //console.log(`message:${msg} & user: ${user}`);
     if(msg.length > 0) {
-        await saveMessage(msg);
+        await saveMessage(user,msg);
         res.json('1');
     }else {
         res.json('-1');

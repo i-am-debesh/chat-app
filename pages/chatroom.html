@@ -171,7 +171,7 @@
                     const HTMLelement = 
                     `
                         <div class="msg self-msg">
-                            <div class="username">${JSON.parse(localStorage.getItem("chat-user-name")).name}</div>
+                            <div class="username">${result[i].username}</div>
                             <div class="message">
                                 ${result[i].msgContent}
                             </div>
@@ -193,7 +193,7 @@
         async function saveMsg(msg) {
             try {
                 
-                    const response = await fetch(`${loginURL}save-message=${msg}`);
+                    const response = await fetch(`${loginURL}save-message=_username=${JSON.parse(localStorage.getItem("chat-user-name")).name}_msg=${msg}`);
                     if (!response.ok) {
                         throw new Error(`Response status: ${response.status}`);
                     }
@@ -226,7 +226,7 @@
         
         setInterval(async ()=>{
             await renderChatBox();
-        },3000)
+        },2000)
     </script>
 </body>
 </html>

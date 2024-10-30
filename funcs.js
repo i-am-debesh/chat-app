@@ -22,10 +22,17 @@ function userExist(username) {
 }
 
 function decodeStringSafely(url) {
-    // Replace any standalone '%' not followed by two hex digits with '%25'
-    let encodedStr = url.slice(14,url.length);
-    const normalizedStr = encodedStr.replace(/%(?![0-9A-Fa-f]{2})/g, '%25');
-    return decodeURIComponent(normalizedStr);
+    url = url.replace(/%(?![0-9A-Fa-f]{2})/g, '%25');
+
+    // Now decode the string
+    const decodedString = decodeURIComponent(url);
+
+    // Split the decoded string to extract username and message
+    const parts = decodedString.split("_msg=");
+    const username = parts[0].split("_username=")[1];
+    const message = parts[1];
+
+    return {"username":username,"message":message};
   }
 
 export{extractUserFromURL, userExist, decodeStringSafely};
