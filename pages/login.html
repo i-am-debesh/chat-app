@@ -12,6 +12,9 @@
             align-items: center;
             
         }
+        .log-heading {
+            font-size: 100px;
+        }
         .main{
             display: flex;
             text-align: center;
@@ -21,40 +24,55 @@
             /* background-color: red; */
         }
         .container{
-            background-color: rgb(36, 128, 96);
+            background-color: rgb(8, 60, 90);
             height: 400px;
             width: 300px;
             text-align: center;
-            color: black;
-            border-radius: 10px;
+            color: rgb(11, 0, 172);
+            border-radius: 30px;
+            border-style:groove;
+            border-width: 0.5px;
+            border-color: rgba(240, 248, 255, 0.337);
+            box-shadow: 5px 5px 800px 10px;
+        }
+        .container .heading {
+            color: white;
+            font-size: 30px;
+            font-weight: bolder;
         }
         .inputs{
             margin-top: 80px;
+
         }
         .user-name{
             margin-bottom: 30px;
         }
         .user-name,
         .user-pass{
-            padding: 10px;
+            padding: 15px;
             text-align: center;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
+            background-color: rgba(61, 105, 0, 0);
+            border-style: groove;
+            border-width: 0.5px;
+            color: white;
         }
         .btns {
             margin-top: 50px;
         }
         .submit-btn{
-            padding: 10px 10px;
+            padding: 20px 20px;
             border: none;
-            background-color: rgb(25, 57, 101);
+            width: 200px;
+            background-color: rgb(48, 105, 221);
             font-weight: bolder;
-            border-radius: 5px;
+            border-radius: 30px;
         }
     </style>
 </head>
 <body>
-    <h1>Secret Society</h1>
+    <h1 class="log-heading">Secret Society</h1>
     <div class="main">
         <div class="container">
             <h2 class="heading">Login/sign up</h2>
